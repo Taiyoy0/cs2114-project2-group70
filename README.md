@@ -17,7 +17,8 @@ What doesn't work yet
 
 Next Steps:
 What is left to finish the MVP:
-- Add saving/loaing
+- implement saving/loading to FlashChain
+- Adding inserted cards in the middle of the linked chain
 Which stretch goals will we attempt:
 - Shuffling
 - Leitner-style repetition
