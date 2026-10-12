@@ -171,7 +171,7 @@ public class FlashChain {
         System.out.println("\n--- Deck: " + deck.getName() + " (" + deck
             .cardCount() + " cards) ---");
         System.out.println("1) List cards");
-        System.out.println("2) Add card to end");
+        System.out.println("2) Add card");
         System.out.println("3) Insert card at position");
         System.out.println("4) Remove card");
         System.out.println("5) Study");
@@ -375,8 +375,8 @@ public class FlashChain {
             Card current = queue.remove();
             attempts++;
 
-            System.out.println("\nCards remaining in this session: " + queue
-                .size() + 1);
+            System.out.println("\nCards remaining in this session: " + (queue
+                .size() + 1));
             System.out.println("FRONT: " + current.getFront());
             System.out.print(
                 "Press Enter to reveal the answer (or type q to stop): ");
