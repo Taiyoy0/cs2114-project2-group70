@@ -9,7 +9,7 @@ What changed since specification:
 - In FlashChain, additional helper methods have been added to clean up and organize menu navigation, card management, and input validation.
 - In FlashChain, a temporary queue created using LinkedChain so incorrectly answered cards return to the end without changing the original deck. 
 What changed in the LinkedChain:
--
+- Nothing yet, we will implement the changes to be made in LinkedChain in the final build
 What happened to unknowns
 - Leitner-style repetition and shuffling are still possible to implement, we still haven't figured out how to implement them
 What doesn't work yet
