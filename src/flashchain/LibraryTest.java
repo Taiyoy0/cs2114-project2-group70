@@ -56,9 +56,11 @@ public class LibraryTest
     public void testListDeckNames() {
         Deck d = new Deck("name");
         lib.addDeck(d);
-        String[] test = new String[lib.deckCount()];
-        test[0] = "name";
-        assertTrue(test.equals(lib.listDeckNames()));
+        String[] test = {"name"};
+        String[] deckNames = lib.listDeckNames();
+        for(int i = 0; i < lib.deckCount(); i++) {
+            assertTrue(test[i].equals(deckNames[i]));
+        }
     }
     
     /**

@@ -2,8 +2,8 @@ package flashchain;
 
 import java.util.Iterator;
 import java.util.Scanner;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
@@ -48,7 +48,6 @@ public class Deck
 
     /**
      * Reads a file to create a deck and populate it'
-     * 
      * 
      * @param filePath
      *            where the file is stored on the computer
@@ -104,11 +103,9 @@ public class Deck
      * @param c
      *            card being added
      */
-    public void insertCard(int index, Card c)
-    {
-        linkedCard.add(c);
-    }
-
+    /**
+     * public void insertCard(int index, Card c) { linkedCard.add(c); }
+     */
 
     /**
      * Removes and returns the card at a specified index
@@ -181,27 +178,26 @@ public class Deck
      */
     public void saveDeck(String filePath)
     {
-        try
+        try (
+            BufferedWriter writer =
+                new BufferedWriter(new FileWriter(filePath)))
         {
-            Path file = Path.of(filePath);
-            Files.writeString(file, name);
             Iterator<Card> cards = iterator();
             while (cards.hasNext())
             {
                 Card c = cards.next();
                 String front = c.getFront();
-                Files.writeString(file, front);
+                writer.write(front);
+                writer.newLine();
                 String back = c.getBack();
-                Files.writeString(file, back);
+                writer.write(back);
             }
-
-            System.out.println("Data saved successfully!");
         }
         catch (IOException e)
         {
-            System.err
-                .println("An error occurred while writing: " + e.getMessage());
+            e.printStackTrace();
         }
+
     }
 
 }
