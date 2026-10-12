@@ -1,3 +1,9 @@
+How to run:
+1. in cmd, navigate to the folder that was downloaded with cd
+2. run `javac -d ./bin ./src/flashchain/*.java`
+3. run `java -cp ./bin flashchain.FlashChain`
+
+
 Reflection:
 What changed since specification: 
 - In FlashChain, additional helper methods have been added to clean up and organize menu navigation, card management, and input validation.
