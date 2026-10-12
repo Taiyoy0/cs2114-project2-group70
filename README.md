@@ -33,9 +33,9 @@ Who does what:
 Attribution:
 - Card: Michaela, drafted and revised without AI
 - CardTest:
-- Deck:
-- DeckTest:
-- Library:
-- LibraryTest:
+- Deck:Joey Gentlesk, drafted and revised with assistance from GenAI
+- DeckTest:Joey Gentlesk, drafted and revised without GenAI
+- Library:Joey Gentlesk, drafted and revised without GenAI
+- LibraryTest:Joey Gentlesk, drafted and revised without AI
 - FlashChain: Taiyo, drafted and revised with assistance from GenAI
 - LinkedChain: Michaela, implemented and revised without AI
