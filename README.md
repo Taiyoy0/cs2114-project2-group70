@@ -25,7 +25,7 @@ Who does what:
 
 
 Attribution:
-- Card:
+- Card: Michaela, drafted and revised without AI
 - CardTest:
 - Deck:
 - DeckTest:
