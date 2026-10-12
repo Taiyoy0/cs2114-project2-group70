@@ -8,14 +8,26 @@ public class CardTest extends student.TestCase {
         card = new Card("2+2=", "4");
     }
     
+    // ----------------------------------------------------------
+    /**
+     * test getter for front of card
+     */
     public void testGetFront() {
         assertEquals("2+2=", card.getFront());
     }
     
+    // ----------------------------------------------------------
+    /**
+     * test getter for back of card
+     */
     public void testGetBack() {
         assertEquals("4", card.getBack());
     }
     
+    // ----------------------------------------------------------
+    /**
+     * test the equals method
+     */
     public void testEquals() {
         Card card2 = new Card("2+2=", "4");
         Card card3 = new Card("2+2=", "5");
@@ -27,5 +39,13 @@ public class CardTest extends student.TestCase {
         assertTrue(card.equals(card2));
         assertFalse(card.equals(card3));
         assertFalse(card.equals(card4));
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * Test the to string method
+     */
+    public void testToString() {
+        assertEquals("2+2= / 4",card.toString() );
     }
 }
