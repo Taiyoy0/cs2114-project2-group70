@@ -17,7 +17,8 @@ What doesn't work yet
 
 Next Steps:
 What is left to finish the MVP:
-- Add saving/loaing
+- implement saving/loading to FlashChain
+- Adding inserted cards in the middle of the linked chain
 Which stretch goals will we attempt:
 - Shuffling
 - Leitner-style repetition
@@ -33,9 +34,9 @@ Who does what:
 Attribution:
 - Card: Michaela, drafted and revised without AI
 - CardTest:
-- Deck:
-- DeckTest:
-- Library:
-- LibraryTest:
+- Deck:Joey Gentlesk, drafted and revised with assistance from GenAI
+- DeckTest:Joey Gentlesk, drafted and revised without GenAI
+- Library:Joey Gentlesk, drafted and revised without GenAI
+- LibraryTest:Joey Gentlesk, drafted and revised without AI
 - FlashChain: Taiyo, drafted and revised with assistance from GenAI
 - LinkedChain: Michaela, implemented and revised without AI
