@@ -33,7 +33,7 @@ Who does what:
 
 Attribution:
 - Card: Michaela, drafted and revised without AI
-- CardTest:
+- CardTest: Taiyo, drafted and revised without AI
 - Deck:Joey Gentlesk, drafted and revised with assistance from GenAI
 - DeckTest:Joey Gentlesk, drafted and revised without GenAI
 - Library:Joey Gentlesk, drafted and revised without GenAI
