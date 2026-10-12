@@ -28,6 +28,7 @@ What new tests will we need:
 - Ensure shuffling properly reorders a deck, but the the deck contains the same cards
 - Ensure Leitner-style repetition properly organizes cards in a deck in appropriate boxes, and cards can properly move between boxes at appropriate times
 Who does what:
+We will continue forward with everyone owning the same classes, so Taiyo will handle any remaining tasks with FlashChain, Joey will handle Deck and Library, and Michaela will handle FlashChain and Card
 
 
 
