@@ -331,7 +331,7 @@ public class LinkedChain<T>
         {
             return this.add(newEntry);
         }
-        if (index == this.size() - 1)
+        if (index == this.size())
         {
             return this.addToEnd(newEntry);
         }
@@ -344,11 +344,9 @@ public class LinkedChain<T>
         }
         Node<T> nodeBefore = curNode;
         Node<T> nodeAt = curNode.next;
-        if (nodeBefore == null || nodeAt == null)
-        {
-            return false;
-        }
+        
         nodeBefore.next = new Node<T>(newEntry, nodeAt);
+        numberOfEntries++;
         return true;
 
     }
