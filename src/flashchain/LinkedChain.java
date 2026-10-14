@@ -312,6 +312,45 @@ public class LinkedChain<T>
         {
             throw new IllegalArgumentException("Cannot add null to chain");
         }
+
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * Adds an entry at a specific index
+     * 
+     * @param newEntry
+     * @param index
+     * @return if method was successful
+     */
+    public boolean addAtIndex(T newEntry, int index)
+    {
+        requireNonNull(newEntry);
+        if (index == 0)
+        {
+            return this.add(newEntry);
+        }
+        if (index == this.size() - 1)
+        {
+            return this.addToEnd(newEntry);
+        }
+        Node<T> curNode = firstNode;
+        int i = 0;
+        while (i != index - 1)
+        {
+            curNode = curNode.next;
+            i++;
+        }
+        Node<T> nodeBefore = curNode;
+        Node<T> nodeAt = curNode.next;
+        if (nodeBefore == null || nodeAt == null)
+        {
+            return false;
+        }
+        nodeBefore.next = new Node<T>(newEntry, nodeAt);
+        return true;
+
     }
 
 
@@ -396,4 +435,5 @@ public class LinkedChain<T>
             next = nextNode;
         }
     }
+
 }
