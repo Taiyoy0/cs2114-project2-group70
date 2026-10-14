@@ -2,6 +2,8 @@ package flashchain;
 
 import java.util.Iterator;
 import java.util.Scanner;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Console driver for the FlashChain flashcard prototype.
@@ -13,6 +15,8 @@ import java.util.Scanner;
 public class FlashChain {
     private final Library userLib;
     private final Scanner input;
+    
+    private static final String DECK_FOLDER = "decks";
 
     /**
      * Creates a FlashChain session with an empty in-memory library.
@@ -31,7 +35,9 @@ public class FlashChain {
      */
     public static void main(String[] args) {
         FlashChain app = new FlashChain();
+        app.loadLibrary();
         app.run();
+        app.saveLibrary();
     }
 
 
@@ -439,5 +445,66 @@ public class FlashChain {
                 System.out.println("Please type y or n.");
             }
         }
+    }
+    
+    /**
+     * Loads every deck file in DECK_FOLDER into the library.
+     */
+    private void loadLibrary() {
+        File[] files = new File(DECK_FOLDER).listFiles();
+        if (files == null) {
+            return; // no save folder yet: first run
+        }
+
+        int loaded = 0;
+        for (File file : files) {
+            if (!file.getName().endsWith(".txt")) {
+                continue;
+            }
+            try {
+                userLib.addDeck(Deck.loadDeck(file.getPath()));
+                loaded++;
+            }
+            catch (IOException e) {
+                System.out.println("Could not load " + file.getName() + ": "
+                    + e.getMessage());
+            }
+            catch (IllegalArgumentException e) {
+                // Duplicate name, or a card/name that is blank.
+                System.out.println("Skipped " + file.getName() + ": "
+                    + "a deck with that name is already loaded.");
+            }
+        }
+
+        if (loaded > 0) {
+            System.out.println("Loaded " + loaded + " deck(s).");
+        }
+    }
+
+    /**
+     * Saves every deck in the library
+     */
+    private void saveLibrary() {
+        File folder = new File(DECK_FOLDER);
+        if (!folder.exists() && !folder.mkdirs()) {
+            System.out.println("Could not create " + DECK_FOLDER
+                + "/; decks were not saved.");
+            return;
+        }
+
+        int saved = 0;
+        Iterator<Deck> decks = userLib.iterator();
+        while (decks.hasNext()) {
+            Deck deck = decks.next();
+            try {
+                deck.saveDeck(new File(folder, deck.getName() + ".txt").getPath());
+                saved++;
+            }
+            catch (IOException e) {
+                System.out.println("Could not save deck \"" + deck.getName()
+                    + "\": " + e.getMessage());
+            }
+        }
+        System.out.println("Saved " + saved + " deck(s) to " + DECK_FOLDER + "/.");
     }
 }

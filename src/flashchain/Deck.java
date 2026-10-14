@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.File;
 import java.io.FileNotFoundException;
 
 // Challenge Exercise 06 fall 2026
@@ -52,20 +53,24 @@ public class Deck
      * @param filePath
      *            where the file is stored on the computer
      * @return deck that was created
-     * @throws FileNotFoundException
+     * @throws IOException
      */
     public static Deck loadDeck(String filePath)
-        throws FileNotFoundException
+        throws IOException
     {
-        try (Scanner input = new Scanner(filePath))
+        try (Scanner input = new Scanner(new File(filePath)))
         {
-            Deck newDeck = new Deck(input.next());
-            while (input.hasNext())
+            if(!input.hasNextLine()) {
+                throw new IOException("Deck file is empty: " + filePath);
+            }
+            Deck newDeck = new Deck(input.nextLine().trim());
+            while (input.hasNextLine())
             {
-                String front = input.next();
-                String back = input.next();
-                Card temp = new Card(front, back);
-                newDeck.addCard(temp);
+                String front = input.nextLine();
+                if(!input.hasNextLine()) {
+                    throw new IOException("Deck file ends without a back: " + filePath);
+                }
+                newDeck.addCard(new Card(front, input.nextLine()));
             }
             return newDeck;
         }
@@ -103,9 +108,9 @@ public class Deck
      * @param c
      *            card being added
      */
-    /**
-     * public void insertCard(int index, Card c) { linkedCard.add(c); }
-     */
+     public void insertCard(int index, Card c) { 
+         linkedCard.addAtIndex(c, index);
+     }
 
     /**
      * Removes and returns the card at a specified index
@@ -175,13 +180,16 @@ public class Deck
      * 
      * @param filePath
      *            the file the cards are being added to
+     * @throws IOException
      */
-    public void saveDeck(String filePath)
+    public void saveDeck(String filePath) throws IOException
     {
         try (
             BufferedWriter writer =
                 new BufferedWriter(new FileWriter(filePath)))
         {
+            writer.write(getName());
+            writer.newLine();
             Iterator<Card> cards = iterator();
             while (cards.hasNext())
             {
@@ -191,13 +199,9 @@ public class Deck
                 writer.newLine();
                 String back = c.getBack();
                 writer.write(back);
+                writer.newLine();
             }
         }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-
     }
 
 }
