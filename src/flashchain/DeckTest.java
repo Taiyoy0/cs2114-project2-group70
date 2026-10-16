@@ -1,10 +1,13 @@
 package flashchain;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.EmptyStackException;
 import student.TestCase;
 
 // -------------------------------------------------------------------------
 /**
- * Tests the methods in
+ * Tests the methods in the Deck class
  * 
  * @author Joey Gentlesk
  * @version Oct 12, 2026
@@ -21,6 +24,66 @@ public class DeckTest
 
 
     /**
+     * Tests the saveDeck Method
+     * 
+     * @throws IOException
+     */
+    public void testSaveDeck()
+        throws IOException
+    {
+        Exception thrown = null;
+        try
+        {
+            deck.saveDeck("");
+        }
+        catch (Exception exception)
+        {
+            thrown = exception;
+        }
+        assertNotNull(thrown);
+        assertTrue(thrown instanceof IOException);
+
+        File file = new File(deck.getName() + ".txt");
+        Card c = new Card("a", "b");
+        deck.addCard(c);
+        deck.saveDeck(file.getPath());
+        Deck newDeck = Deck.loadDeck(file.getPath());
+        assertTrue(deck.getName().equals(newDeck.getName()));
+        assertTrue(newDeck.getCard(0).toString().equals("a / b"));
+    }
+
+
+    /**
+     * Tests the loadDeck Method
+     * 
+     * @throws IOException
+     */
+    public void testLoadDeckMethod()
+        throws IOException
+    {
+        Exception thrown = null;
+        try
+        {
+            Deck.loadDeck("");
+        }
+        catch (Exception exception)
+        {
+            thrown = exception;
+        }
+        assertNotNull(thrown);
+        assertTrue(thrown instanceof IOException);
+
+        File file = new File(deck.getName() + ".txt");
+        Card c = new Card("a", "b");
+        deck.addCard(c);
+        deck.saveDeck(file.getPath());
+        Deck newDeck = Deck.loadDeck(file.getPath());
+        assertTrue(deck.getName().equals(newDeck.getName()));
+        assertTrue(newDeck.getCard(0).toString().equals("a / b"));
+    }
+
+
+    /**
      * Tests the getName method
      */
     public void testGetName()
@@ -30,7 +93,7 @@ public class DeckTest
 
 
     /**
-     * Tests the addCard mehtod
+     * Tests the addCard method
      */
     public void testAddCard()
     {
@@ -38,6 +101,21 @@ public class DeckTest
         assertEquals(0, deck.cardCount());
         deck.addCard(c);
         assertEquals(1, deck.cardCount());
+    }
+
+
+    /**
+     * Tests the insertCard method
+     */
+    public void testInsertCard()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            deck.addCard(new Card("", ""));
+        }
+        Card c = new Card("q", "a");
+        deck.insertCard(1, c);
+        assertTrue(deck.getCard(1).equals(c));
     }
 
 
@@ -75,11 +153,13 @@ public class DeckTest
         deck.addCard(c);
         assertFalse(deck.isEmpty());
     }
-    
+
+
     /**
      * Tests the iterator method
      */
-    public void testIterator() {
+    public void testIterator()
+    {
         assertNotNull(deck.iterator());
     }
 

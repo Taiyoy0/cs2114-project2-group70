@@ -60,15 +60,18 @@ public class Deck
     {
         try (Scanner input = new Scanner(new File(filePath)))
         {
-            if(!input.hasNextLine()) {
+            if (!input.hasNextLine())
+            {
                 throw new IOException("Deck file is empty: " + filePath);
             }
             Deck newDeck = new Deck(input.nextLine().trim());
             while (input.hasNextLine())
             {
                 String front = input.nextLine();
-                if(!input.hasNextLine()) {
-                    throw new IOException("Deck file ends without a back: " + filePath);
+                if (!input.hasNextLine())
+                {
+                    throw new IOException(
+                        "Deck file ends without a back: " + filePath);
                 }
                 newDeck.addCard(new Card(front, input.nextLine()));
             }
@@ -108,9 +111,11 @@ public class Deck
      * @param c
      *            card being added
      */
-     public void insertCard(int index, Card c) { 
-         linkedCard.addAtIndex(c, index);
-     }
+    public void insertCard(int index, Card c)
+    {
+        linkedCard.addAtIndex(c, index);
+    }
+
 
     /**
      * Removes and returns the card at a specified index
@@ -182,7 +187,8 @@ public class Deck
      *            the file the cards are being added to
      * @throws IOException
      */
-    public void saveDeck(String filePath) throws IOException
+    public void saveDeck(String filePath)
+        throws IOException
     {
         try (
             BufferedWriter writer =
