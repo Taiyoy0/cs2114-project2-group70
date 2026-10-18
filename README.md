@@ -1,7 +1,7 @@
 How to run:
 1. in cmd, navigate to the folder that was downloaded with cd
-2. run `javac -d ./bin ./src/flashchain/*.java`
-3. run `java -cp ./bin flashchain.FlashChain`
+2. run `javac -d bin sr\flashchain\*.java`
+3. run `java -cp bin flashchain.FlashChain`
 
 
 Reflection:
