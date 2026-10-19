@@ -15,5 +15,7 @@ On Eclipse:
 - FlashChain: Taiyo, drafted and revised with assistance from GenAI
 - LinkedChain: Michaela, Copied from given class
 
+GenAI was used to revise the spec doc, write and revise FlashChain and it's methods, and revise some other classes. 
+
 ### System Diagram:
 <img width="1255" height="713" alt="Screenshot 2026-10-19 122318" src="https://github.com/user-attachments/assets/2613f513-a92d-4fd1-ab71-2e85d8d5c273" />
